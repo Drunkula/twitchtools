@@ -1,0 +1,166 @@
+extends components/layout-navbar
+//- after could do a modal with dismiss options
+block content
+	script(src="/scripts/tmi.min.js" defer)
+	script(src="/scripts/tmi-code-common.js" defer)
+	script(src="/scripts/form-fields-save-restore.js" defer)
+	script(src="/scripts/muted-alert.js" defer)
+
+	#flasher: p YOU'RE<br>MUTED!
+
+	.notification.is-info.not-mobile-view#ncnoti Muted Alerts - chatters can let you know you're muted.
+
+		button.delete(data-target="#ncnoti")
+		//- mobile have controls top
+	.columns.is-flex-direction-row-reverse
+		//- controls
+		.column
+			audio#ding(controls src="https://soundbible.com/mp3/service-bell_daniel_simion.mp3") Ding!
+
+			.box.controls
+				form#mainform.not-mobile-view.mb-2
+					label.label.is-hidden-mobile Channels
+					.field.has-addons.not-mobile-view
+						.control.is-expanded
+							input#channels.input.is-fullwidth.form-save(type="text" size="50" placeholder="Channel names space or comma separated").form-filter-spaces-to-commas
+						.control
+							button.button.is-link.urlpopulate#join Join
+
+				//- cooldown controls
+				.field.is-grouped-centered.is-grouped
+					.control
+						.tag.is-medium#cooldownoutput.is-info Cooldown:&nbsp;
+							span#cooldowncountdown ???
+					.control
+						button.button.is-small.is-primary.mobile-view-btn Mini View
+					.control.is-hidden-mobile
+						.dropdown.is-responsive.is-small
+							.dropdown-trigger
+								button.button.is-primary.is-small
+									span Clear Output:
+									span.icon.is-small
+										i.fas.fa-comment-slash
+							.dropdown-menu
+								.dropdown-content
+									a.dropdown-item#clearmainout Confirm
+									.dropdown-divider
+									a.dropdown-item Cancel
+
+				.field.is-grouped-centered.is-grouped
+					.control
+						button.button.is-small.is-info.cooldown-set(data-add="60") +1m
+					.control
+						button.button.is-small.is-info.cooldown-set(data-add="300") +5m
+					.control
+						button.button.is-small.is-info.cooldown-set(data-add="900") +15m
+					.control
+						button.button.is-small.is-warning.cooldown-set(data-add="clear") Clear
+					.control
+						button.button.is-small.is-primary.modal-trigger(data-target="configModal")
+							i.fas.fa-gear
+
+
+				.field.is-grouped-centered.is-grouped
+
+		//- chatter panel
+		.column
+			.box#mainoutput
+				| Muted Alerts
+
+			.not-mobile-view#logbox
+				.box
+					button.delete.is-pulled-right(data-target="#logbox")
+					h3.subtitle#loglabel.mb-1 Log:
+					#log
+			button#flashtestbtn FLASH
+
+
+	.container.not-mobile-view
+		.message#mbnc.is-link
+			.message-header
+				| Muted Alert Tool Tips
+				button.delete(data-target="#mbnc")
+			.message-body
+				.block The muted tool lets you get alerted by the chat trying to tell you you're muted.  The alert is triggered by text like: <strong><em>you're muted</em></strong> or <strong><em>your mic is muted</em></strong> or simply <strong>!muted</strong>.
+
+				p <strong>Config</strong>
+					button.button.is-small.is-primary.modal-trigger.p-1(data-target="configModal")
+						i.fas.fa-gear
+					|  :
+				p <strong>Permissions:</strong> limit to mods, vips, everyone and/or named users you trust
+				p.block <strong>alerts:</strong> sound, flash screen or disable.
+
+				p <strong>Cooldowns:</strong>
+				.block When the page loads and when alerts occur a cooldown will start before it can be triggered again.  You can add to the cooldown at any time using the add time buttons.
+
+				.block <strong>NOTE:</strong> Sounds might not play until you 'interact with the document, which means clicking inside it.  It's a limitation of some browsers to stop pop up web pages from being really annoying.
+
+				.block <strong>Tips:</strong> "Done" on the config page, joining channels and "Get Url" saves values to the current url letting you bookmark the page without having to type in everything again.  If you're a mod for multiple channels you can easily save bookmarks with different settings.
+
+				.field.has-addons
+					.control.is-expanded
+						input.input.is-small#linkurl(placeholder="Url to bookmark")
+					.control
+						button.button.is-danger.is-small.is-responsive.urlpopulate Get Url
+
+				//-
+					.block You can use ?channels=X,Y,Z after the url to preload channels and &amp;autojoin=true will save you clicking that button.
+						|   This lets you conveniently bookmark
+					.block muted-alert.html?channels=my_channel&amp;autojoin=true
+
+				p The #[span.tag.is-primary Mini View] button toggles a reduced view useful for phones.  Make sure you've joined a channel first.
+
+
+	.modal#configModal
+		.modal-background
+		.modal-card
+			header.modal-card-head
+				p.modal-card-title Muted Alert Config
+				button.delete
+			section.modal-card-body
+
+				//-label.label.has-text-centered Alerts Show
+				.field.is-grouped-centered.is-grouped.mb-3
+					.control
+						label.checkbox.button.is-link.is-size-7-mobile
+							input(type="checkbox" checked)#playsound.form-save
+							|  play sound
+					.control
+						label.checkbox.button.is-link.is-size-7-mobile
+							input(type="checkbox" checked)#flashscreen.form-save
+							|  flash screen
+					.control
+						label.checkbox.button.is-link.is-size-7-mobile
+							input(type="checkbox" checked)#enablealert
+							|  enabled
+
+				label.label.has-text-centered Allow "you're muted" or !muted from:
+				.field.is-grouped-centered.is-grouped.permissions
+					.control
+						label.checkbox.button.is-info
+							input(type="checkbox")#everyone.form-save
+							|  everyone
+					.control
+						label.checkbox.button.is-info
+							input(type="checkbox" checked)#mods.form-save
+							|  mods
+					.control
+						label.checkbox.button.is-info
+							input(type="checkbox" checked)#vips.form-save
+							|  vips
+
+				label.label Users always allowed (even if not mods)
+				.field
+					.control
+						input.input(type="text" name="allownamed" id="allownamed" placeholder="allow named users").form-save.form-filter-spaces-to-commas
+
+				label.label Default cooldown minutes
+				.field
+					.control
+						input.input.number-input-3(type="number" name="defaultcooldown" id="defaultcooldown" min="0" max="300" value="3").form-save
+
+
+
+			footer.modal-card-foot
+				button.button.modal-dismiss.is-success.urlpopulate Done
+		button.modal-close.is-large button

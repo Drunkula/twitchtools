@@ -1,0 +1,24 @@
+Let users add known trolls to a list
+
+Suggestions / Requests logger
+
+!emergency command for Twitch tools
+
+websockets should return reconnect token to use with ID
+Because of Glitch and other resources rebooting states should be saved to db
+
+If using Piesockets states could be saved in the Host but you wouldn't
+
+
+1 2 become 2
+  3        1
+		   3
+
+With columns / flex
+
+
+Irfanview default file types
+
+JPG|JPEG|JPE|GIF|BMP|DIB|TIF|TIFF|PNG|PCX|TGA|JXL|PCD|SUN|RAS|ICO|AVI|IFF|PPM|PGM|PBM|LBM|WMF|EMF|WAV|PSD|MPG|MPE|MPEG|MID|RMI|MOV|CUR|ANI|DCX|EPS|CLP|CAM|G3|AIF|AU|SND|PSP|PSPIMAGE|ICL|SFW|RA|MP3|DCM|ACR|FPX|XBM|XPM|DJVU|SWF|FLV|IMG|IW44|WBMP|SGI|RGB|RLE|MED|RLE|SFF|JP2|JPC|J2K|JPF|CRW|B3D|WMA|WMV|TTF|SID|MNG|JNG|RAW|ECW|ASF|TXT|WAD|ICS|IDS|CDR|CMX|NEF|NRW|ERF|ORF|RAF|MRW|DCR|X3F|SRF|ARW|PEF|RW2|RWL|SRW|MOS|3FR|OGG|DWG|DXF|DDS|JPM|PLT|CR2|CR3|DNG|PS|PDF|AI|CGM|SVG|DCM|FITS|HDP|WDP|JXR|EXR|WSQ|JLS|WBZ|WBC|MP4|MKV|MTS|M2TS|TS|M2T|M4V|3GP|VOB|MPO|PDN|XCF|WEBP|WEBM|HEIC|AVIF|DPX|CIN|FLIF|FLAC|PSB|JFIF|
+
+JPG|JPEG|JPE|GIF|BMP|TIF|TIFF|PNG|PCX|TGA|PCD|ICO|PGM|PSD|IMG|RGB|RLE|JP2|3GP|WEBP|WEBM

@@ -1,0 +1,12 @@
+{
+	"toolsList": [
+		{"name": "New Chatters alert (say hello to new chatters easily)", "url": "new-chatter.html"},
+		{"name": "You're Muted alert", "url": "muted-alert.html"},
+		{"name": "New chat alert - don't miss chat messages (good for small channels)", "url": "chat-alert.html"},
+		{"name": "<b>There'll be more...</b>", "url": "#"},
+		{"name": "VIPs / Named chatters or WRONG 'UNS join", "url": "#"},
+		{"name": "OBS scene and mic control mod chat commands (!unmute, !brb, !game)", "url": "#"},
+		{"name": "OBS web control panel for your mods", "url": "#"},
+		{"name": "And your suggestions.", "url": "#"}
+	]
+}

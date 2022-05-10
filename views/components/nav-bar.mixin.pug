@@ -1,0 +1,54 @@
+mixin nav-bar(isFixed = false)
+
+	nav.navbar.is-dark(class= isFixed ? 'is-fixed-top' : '').cadbury
+		.navbar-brand
+			a.navbar-item(href="/")
+				img(src="/assets/tt-nav.svg")
+			// burger needs to be inside the brand
+			a.navbar-burger#burger-component
+				span
+				span
+				span
+		.navbar-menu#nav-links-component
+			.navbar-start
+				a.navbar-item(href="/") Home.
+				.navbar-item.has-dropdown.is-hoverable
+					a.navbar-link Tools List
+					.navbar-dropdown.is-boxed
+						each link in toolsList
+							a.navbar-item(href= link.url)
+								| !{link.name}
+						hr.navbar-divider.is-hidden-desktop
+			.navbar-end
+				.navbar-item.has-dropdown.is-hoverable.is-hidden-touch
+					a.navbar-link Bulma Bits
+					.navbar-dropdown
+						a.navbar-item(href="https://bulma.io/documentation/components/" target="_blank") Components
+						a.navbar-item(href="https://bulma.io/documentation/elements/" target="_blank") Elements
+						hr.navbar-divider
+						a.navbar-item(href="https://bulma.io/documentation/layout/" target="_blank") Layout
+						a.navbar-item(href="https://bulma.io/documentation/form/" target="_blank") Forms
+				.navbar-item.has-dropdown.is-hoverable.is-hidden-touch
+					a.navbar-link Assets
+					.navbar-dropdown.is-right
+						a.navbar-item(href="https://fontawesome.com/search?m=free&s=solid" target="_blank") Fontawesome Solid Free
+						a.navbar-item(href="https://fontawesome.com/search?m=free&s=regular" target="_blank") Fontawesome Regular Free
+						a.navbar-item(href="https://fontawesome.com/docs/web/style/animate#customization" target="_blank") Fontawesome Animations
+						hr.navbar-divider
+						a.navbar-item(href="https://fonts.google.com/" target="_blank") Google Fonts
+
+
+	script.
+		document.addEventListener("DOMContentLoaded", () => {
+			// for this specific nav list
+			const burger = document.querySelector('#burger-component');
+			const navlist = document.querySelector('#nav-links-component');
+			burger.addEventListener('click', () => {navlist.classList.toggle('is-active'); burger.classList.toggle('is-active')})
+		});
+
+	if (isFixed)
+		div(style="margin-bottom: 80px;")
+
+
+
+

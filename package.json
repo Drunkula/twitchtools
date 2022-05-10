@@ -1,0 +1,25 @@
+{
+  "name": "16-pug-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon \"app.js\"",
+    "old": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "nodemonConfig": {
+    "verbose": false,
+    "delay": 100,
+    "ext": "json,txt,js,pug",
+    "comment": "Delay sets the time after triggering it displays the messages.  Milliseconds.",
+    "comment2": "Nodemon will not re-read this file so changing parameters here means stop and restart manually.",
+    "comment3": "It luckily doesn't screech about extra comment properties."
+  },
+  "dependencies": {
+    "bulma": "^0.9.3"
+  }
+}

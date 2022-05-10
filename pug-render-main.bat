@@ -1,0 +1,1 @@
+FOR %%F IN (views/*.pug) DO pug "views/%%F" -o renders -O tools-list.json -P

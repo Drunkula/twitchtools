@@ -1,0 +1,99 @@
+extends components/layout-navbar
+
+block content
+
+	script(src="/scripts/tmi.min.js")
+	script(src="/scripts/tmi-code-common.js")
+	script(src="/scripts/form-fields-save-restore.js")
+	script(src="/scripts/new-chatter-notifications.js")
+
+	.notification.is-info.not-mobile-view#ncnoti New Chatters
+		button.delete(data-target="#ncnoti")
+		//- mobile have controls top
+	.columns.is-flex-direction-row-reverse
+		//- controls
+		.column
+			.box.controls
+				form#mainform.not-mobile-view
+					label.label.is-hidden-mobile Channels
+					.field.has-addons
+						.control.is-expanded
+							input#channels.input.is-fullwidth.form-save(type="text" size="50" placeholder="Channel names space or comma separated").form-filter-spaces-to-commas
+						.control
+							button.button.is-link.urlpopulate#join Join
+
+
+				// label.label#ncl(for="newchats") new Chatters:
+				.field.is-grouped-centered.is-grouped
+					// dropdowns larger view - maybe do little for both
+					.control.is-hidden-mobile
+						.dropdown.is-responsive.is-small
+							.dropdown-trigger
+								button.button.is-primary
+									span Clear chatters:
+									span.icon.is-small
+										i.fas.fa-comment-slash
+							.dropdown-menu
+								.dropdown-content
+									a.dropdown-item#clearnew Confirm
+									.dropdown-divider
+									a.dropdown-item Cancel
+					.control.is-hidden-mobile
+						.dropdown.is-small.is-right
+							.dropdown-trigger
+								button.button.is-primary
+									span Reset:
+									span.icon.is-small
+										i.fas.fa-power-off
+							.dropdown-menu
+								.dropdown-content
+									a.dropdown-item#resetnew Confirm
+									.dropdown-divider
+									a.dropdown-item Cancel
+					// small buttons mobile view
+					.control.is-hidden-tablet
+						button.button.is-small.is-info.clearChatConf Clear Chat
+					.control.is-hidden-tablet
+						button.button.is-small.is-info.resetChatConf Reset
+					.control
+						button.button.is-small.is-primary.mobile-view-btn Mini View
+
+		//- chatter panel
+		.column
+			.box#mainoutput
+				| New chatter list
+
+			.not-mobile-view#logbox
+				.box
+					button.delete.is-pulled-right(data-target="#logbox")
+					h3.subtitle#loglabel.mb-1 Log:
+					#log
+
+	.container.not-mobile-view
+		.message#mbnc.is-link
+			.message-header
+				| New Chatter Tips
+				button.delete(data-target="#mbnc")
+			.message-body
+				p.mb-4 The new chatter tool lets you easily say hello to people without having to scroll through your entire chat history.
+
+				p.mb-4 After joining a channel when somebody chats they'll be added to the list just once so you can say hello to everyone at the start of your stream.  You can <strong>click names to dismiss them</strong> as you go, or just hit the clear button.  Chatters won't be added again unless you hit reset.
+
+				p.mb-4 Popping off camera for a bit - clear the list and you'll know if any new chatters have joined since you were gone.
+
+				p.mb-4 The reset button will forget the previous chatters so they'll be added again.  If you're signing off then reset and it'll make it easy to see who's saying goodbye.
+
+				h3.is-size-5 Tips:
+
+				p.mb-4 You can use ?channels=X,Y,Z after the url to preload channels and &amp;autojoin=true will save you clicking that button.
+
+				p.mb-4 This lets you conveniently bookmark <em>new-chatters.html?channels=my_channel&amp;autojoin=true</em>
+
+				p.mb-4 The #[span.tag.is-primary Mini view] button will give a view good for phones, just make sure you've joined a channel first.
+
+				.field.has-addons
+					.control.is-expanded
+						input.input.is-small#linkurl(placeholder="Url to bookmark")
+					.control
+						button.button.is-danger.is-small.is-responsive.urlpopulate Get Url
+
